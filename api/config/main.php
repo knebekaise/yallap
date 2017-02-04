@@ -15,15 +15,13 @@ return [
         'v1' => [
             'class' => 'api\modules\v1\Module',
         ],
-        'v2' => [
-            'class' => 'api\modules\v2\Module',
-        ],
     ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-api',
         ],
         'user' => [
+            'enableSession' => false,
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
@@ -53,14 +51,7 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
                         'v1/users',
-                        'v1/posts,'
-                    ]
-                ],
-                [
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => [
-                        'v2/users',
-                        'v2/posts'
+                        'v1/videos',
                     ]
                 ],
             ],

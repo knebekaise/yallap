@@ -1,0 +1,13 @@
+class_name: ApiTester
+modules:
+    enabled:
+        # add framework module here
+        - \Helper\Api
+        - REST
+        - Yii2
+    config:
+        Yii2:
+            configFile: 'config/test-local.php'
+        REST:
+            depends: Yii2
+            url: '/v1'
