@@ -121,3 +121,40 @@
   If task with such id does not found
   * **Code:** 404 NOT FOUND <br />
     **Content:** `{"name":"Not Found","message":"Object not found: 100","code":0,"status":404,"type":"yii\\web\\NotFoundHttpException"}`
+
+
+**Restart failed task**
+----
+* **/v1/videos/:id**
+
+* **Method:**
+
+  `PUT`
+
+*  **URL Params**
+
+   **Required:**
+
+   `id=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 OK<br />
+    **Content:** `{"start_time":"100","end_time":"200","user_id":"1","status":"waiting","original_file_name":"John Cantlie and ISIS Video Strategy - Video - NYTimescom.mp4","file_name":"1893928635589795baceec90.08811456.mp4","id":"38"}`
+
+  OR
+
+  If tried to restart non failed task
+  * **Code:** 304 NOT MODIFIED<br />
+
+  * **Error Response:**
+
+  If user with such auth key does not found
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{"name":"Unauthorized","message":"Your request was made with invalid credentials.","code":0,"status":401,"type":"yii\\web\\UnauthorizedHttpException"}`
+
+  OR
+
+  If task with such id does not found
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"name":"Not Found","message":"Object not found: 100","code":0,"status":404,"type":"yii\\web\\NotFoundHttpException"}`

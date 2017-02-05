@@ -8,6 +8,8 @@ use yii\helpers\FileHelper;
 
 class Task extends BaseTask
 {
+    const SCENARIO_CREATE = 'create';
+
     public $video;
 
     public $fileUploadPath = 'uploads/source/';
@@ -17,6 +19,14 @@ class Task extends BaseTask
         return [
             [['video', 'start_time', 'end_time'], 'safe'],
             [['video'], 'file', 'skipOnEmpty' => false],
+        ];
+    }
+
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_DEFAULT => ['status'],
+            self::SCENARIO_CREATE => ['video', 'start_time', 'end_time'],
         ];
     }
 

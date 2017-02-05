@@ -7,6 +7,7 @@ use api\common\controllers\VideosController as BaseVideosController;
 use api\modules\v1\models\Task;
 use yii\web\UploadedFile;
 use yii\web\ServerErrorHttpException;
+use yii\web\HttpException;
 use yii\helpers\Url;
 use yii\data\ActiveDataProvider;
 use webtoucher\amqp\controllers\AmqpTrait;
@@ -22,7 +23,9 @@ class VideosController extends BaseVideosController
     {
         $actions = parent::actions();
         $actions['index']['prepareDataProvider'] = [$this, 'prepareIndexDataProvider'];
-        unset($actions['create']);
+        $actions['view']['findModel'] = [$this, 'findModel'];
+
+        unset($actions['create'], $actions['update']);
         return $actions;
     }
 
@@ -34,6 +37,7 @@ class VideosController extends BaseVideosController
 
         $params = Yii::$app->getRequest()->getBodyParams();
         $model = new Task();
+        $model->setScenario(Task::SCENARIO_CREATE);
         $model->load(Yii::$app->getRequest()->getBodyParams(), '');
         $model->video = UploadedFile::getInstanceByName('video');
         $model->user_id = Yii::$app->user->getId();
@@ -47,6 +51,20 @@ class VideosController extends BaseVideosController
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
 
+        return $model;
+    }
+
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->status === Task::STATUS_FAIL) {
+            $model->status = Task::STATUS_WAITING;
+            $model->save();
+            $this->addTask($model);
+        } else {
+            $response = Yii::$app->getResponse();
+            $response->setStatusCode(304);
+        }
         return $model;
     }
 
@@ -64,6 +82,22 @@ class VideosController extends BaseVideosController
                 'pageSize' => $perPage,
             ],
         ]);
+    }
+
+    /**
+     * @param  integer $id
+     * @return Task
+     * @throws NotFoundHttpException
+     */
+    public function findModel($id)
+    {
+        $model = Task::findOne($id);
+
+        if (isset($model)) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException("Object not found: $id");
+        }
     }
 
     /**
