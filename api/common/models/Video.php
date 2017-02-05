@@ -6,8 +6,11 @@ use \yii\redis\ActiveRecord;
 
 class Video extends ActiveRecord
 {
-	public function attributes()
-	{
-		return ['id', 'url', 'duration'],
-	}
+    /**
+     * @return array
+     */
+    public function attributes()
+    {
+        return ['id', 'file_name', 'duration'];
+    }
 }

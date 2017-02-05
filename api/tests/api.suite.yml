@@ -5,9 +5,15 @@ modules:
         - \Helper\Api
         - REST
         - Yii2
+        - Asserts
     config:
         Yii2:
             configFile: 'config/test-local.php'
         REST:
             depends: Yii2
             url: '/v1'
+        Redis:
+           host: '127.0.0.1'
+           port: 6379
+           database: 1
+           cleanupBefore: 'test'

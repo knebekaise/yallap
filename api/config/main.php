@@ -19,12 +19,13 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-api',
+            'parsers' => [
+                'multipart/form-data' => 'yii\web\MultipartFormDataParser',
+            ],
         ],
         'user' => [
             'enableSession' => false,
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
+            'identityClass' => 'api\common\models\User',
         ],
         'session' => [
             // this is the name of the session cookie used for login on the api
