@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5b552c2f5989b08bb6df0a7beaaccb7",
+    "content-hash": "07475602f66c282db820bbd5700ce657",
     "packages": [
         {
             "name": "behat/gherkin",
@@ -2534,6 +2534,55 @@
             "time": "2017-01-03T13:51:32+00:00"
         },
         {
+            "name": "videlalvaro/php-amqplib",
+            "version": "v2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-amqplib/php-amqplib.git",
+                "reference": "d8294736e47340e8d96f37d788b15f578bfc084f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/d8294736e47340e8d96f37d788b15f578bfc084f",
+                "reference": "d8294736e47340e8d96f37d788b15f578bfc084f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "ext-sockets": "Use AMQPSocketConnection"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PhpAmqpLib": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Alvaro Videla"
+                }
+            ],
+            "description": "This library is a pure PHP implementation of the AMQP protocol. It's been tested against RabbitMQ.",
+            "homepage": "https://github.com/videlalvaro/php-amqplib/",
+            "keywords": [
+                "message",
+                "queue",
+                "rabbitmq"
+            ],
+            "abandoned": "php-amqplib/php-amqplib",
+            "time": "2014-06-21T09:27:57+00:00"
+        },
+        {
             "name": "webmozart/assert",
             "version": "1.2.0",
             "source": {
@@ -2582,6 +2631,94 @@
                 "validate"
             ],
             "time": "2016-11-23T20:04:58+00:00"
+        },
+        {
+            "name": "webtoucher/yii2-amqp",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webtoucher/yii2-amqp.git",
+                "reference": "787a47640be1f4cd66a248dfa6533004b31f323a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webtoucher/yii2-amqp/zipball/787a47640be1f4cd66a248dfa6533004b31f323a",
+                "reference": "787a47640be1f4cd66a248dfa6533004b31f323a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "videlalvaro/php-amqplib": "2.4.0",
+                "webtoucher/yii2-commands": "*"
+            },
+            "type": "yii-extension",
+            "autoload": {
+                "psr-4": {
+                    "webtoucher\\amqp\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexey Kuznetsov",
+                    "email": "mirakuru@webtoucher.ru"
+                }
+            ],
+            "description": "Yii 2 extension wrapper to communicate with RabbitMQ server via AMQP. Based on videlalvaro/php-amqplib.",
+            "homepage": "https://github.com/webtoucher/yii2-amqp",
+            "keywords": [
+                "AMQP",
+                "extension",
+                "rabbitmq",
+                "yii"
+            ],
+            "time": "2014-07-24T04:42:42+00:00"
+        },
+        {
+            "name": "webtoucher/yii2-commands",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webtoucher/yii2-commands.git",
+                "reference": "3087677b3591126d44ff17ca37aad860273f157b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webtoucher/yii2-commands/zipball/3087677b3591126d44ff17ca37aad860273f157b",
+                "reference": "3087677b3591126d44ff17ca37aad860273f157b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "yii-extension",
+            "autoload": {
+                "psr-4": {
+                    "webtoucher\\commands\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexey Kuznetsov",
+                    "email": "mirakuru@webtoucher.ru"
+                }
+            ],
+            "description": "Yii 2 extension wrapper for console controllers.",
+            "homepage": "https://github.com/webtoucher/yii2-commands",
+            "keywords": [
+                "command",
+                "console",
+                "extension",
+                "yii"
+            ],
+            "time": "2014-07-24T05:13:19+00:00"
         },
         {
             "name": "yiisoft/yii2",

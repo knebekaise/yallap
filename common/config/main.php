@@ -11,5 +11,11 @@ return [
             'port' => 6379,
             'database' => 0,
         ],
+        'amqp' => [
+            'class' => 'webtoucher\amqp\components\Amqp',
+            'host' => 'xxx',
+            'port' => 5672,
+            'vhost' => '/',
+        ],
     ],
 ];

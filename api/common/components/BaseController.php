@@ -7,6 +7,8 @@ use yii\filters\auth\HttpBearerAuth;
 
 class BaseController extends ActiveController
 {
+    const DEFAULT_PAGE_SIZE = 20;
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();
