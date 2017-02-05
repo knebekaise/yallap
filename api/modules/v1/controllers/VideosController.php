@@ -7,6 +7,7 @@ use api\common\controllers\VideosController as BaseVideosController;
 use api\modules\v1\models\Task;
 use yii\web\UploadedFile;
 use yii\web\ServerErrorHttpException;
+use yii\web\NotFoundHttpException;
 use yii\web\HttpException;
 use yii\helpers\Url;
 use yii\data\ActiveDataProvider;
@@ -91,7 +92,10 @@ class VideosController extends BaseVideosController
      */
     public function findModel($id)
     {
-        $model = Task::findOne($id);
+        $model = Task::find()
+            ->where(['id' => $id])
+            ->andWhere(['user_id' => Yii::$app->user->getId()])
+            ->one();
 
         if (isset($model)) {
             return $model;
