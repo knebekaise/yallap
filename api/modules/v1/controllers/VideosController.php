@@ -8,6 +8,7 @@ use api\modules\v1\models\Task;
 use yii\web\UploadedFile;
 use yii\web\ServerErrorHttpException;
 use yii\helpers\Url;
+use yii\data\ActiveDataProvider;
 
 class VideosController extends BaseVideosController
 {
@@ -17,6 +18,7 @@ class VideosController extends BaseVideosController
     public function actions()
     {
         $actions = parent::actions();
+        $actions['index']['prepareDataProvider'] = [$this, 'prepareIndexDataProvider'];
         unset($actions['create']);
         return $actions;
     }
@@ -42,5 +44,15 @@ class VideosController extends BaseVideosController
         }
 
         return $model;
+    }
+
+    /**
+     * @return ActiveDataProvider
+     */
+    public function prepareIndexDataProvider()
+    {
+        return new ActiveDataProvider([
+            'query' => Task::find()->where(['user_id' => Yii::$app->user->getId()]),
+        ]);
     }
 }

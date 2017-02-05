@@ -43,4 +43,33 @@ class ProcessTasksCest
         $response = json_decode($I->grabResponse(), true);
         $I->assertTrue(isset($response['status']) && ($response['status'] == api\modules\v1\models\Task::STATUS_NEW));
     }
+
+    public function testListTasks(ApiTester $I)
+    {
+        $I->haveFixtures([
+            'user' => [
+                'class' => api\tests\fixtures\UserFixture::class,
+                'dataFile' => '@api/tests/_data/models/user.php',
+            ],
+            'task' => [
+                'class' => api\tests\fixtures\TaskFixture::class,
+                'dataFile' => '@api/tests/_data/models/task.php',
+            ],
+        ]);
+        $user = $I->grabFixture('user', 30);
+        $I->wantTo('test video listing');
+        $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->haveHttpHeader('Authorization', 'Bearer ' . $user->auth_key);
+        $I->sendGET('/videos');
+        $I->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+        $I->seeResponseIsJson();
+
+        $I->wantTo('test that list of video is real owned by current user');
+        $response = json_decode($I->grabResponse(), true);
+        $isCurrentUserTasks = true;
+        foreach ($response as $task) {
+            $usCurrentUserTasks = $isCurrentUserTasks && (isset($task['user_id']) && ($task['user_id'] == $user->id));
+        }
+        $I->assertTrue($isCurrentUserTasks);
+    }
 }
