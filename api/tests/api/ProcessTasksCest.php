@@ -41,7 +41,7 @@ class ProcessTasksCest
         $I->seeResponseCodeIs(\Codeception\Util\HttpCode::CREATED);
         $I->seeResponseIsJson();
         $response = json_decode($I->grabResponse(), true);
-        $I->assertTrue(isset($response['status']) && ($response['status'] == api\modules\v1\models\Task::STATUS_NEW));
+        $I->assertTrue(isset($response['status']) && ($response['status'] == api\modules\v1\models\Task::STATUS_WAITING));
     }
 
     public function testListTasks(ApiTester $I)
